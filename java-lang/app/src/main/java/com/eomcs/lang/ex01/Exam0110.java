@@ -1,4 +1,4 @@
- src/package com.eomcs.lang.ex01;
+package com.eomcs.lang.ex01;
 
 //# 클래스 블록과 컴파일 I
 //- 자바 컴파일러는 클래스 블록 단위로 컴파일을 수행한다.
@@ -15,7 +15,7 @@ class Exam0110 {}
 //2) 생성된 클래스 파일 확인하기
 //- bin/main/com/eomcs/lang/ex01 디렉토리에 Exam0110.class 파일이 생성된다
 //
-
+ 
 
 
 
