@@ -23,3 +23,8 @@ public class Exam0434 {
   }
 }
 
+
+//System.out.print((char)(v + i));
+//char = 형변환
+
+

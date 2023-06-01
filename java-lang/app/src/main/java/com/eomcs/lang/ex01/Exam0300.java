@@ -25,3 +25,6 @@ class Exam0300 {
 //
 //2) 실행하기
 //- $ java -cp bin/main com.eomcs.lang.ex01.Exam0300
+
+
+///05.26 (자바기초) 8P

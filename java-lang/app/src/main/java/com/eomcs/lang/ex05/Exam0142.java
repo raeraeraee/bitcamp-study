@@ -21,7 +21,7 @@ public class Exam0142 {
     //    의도한 결과가 나오지 않을 수 있다.
 
     // 그래서 int와 int의 연산 결과를 더 큰 메모리에 담는다면 해결될까?
-    long r2 = x + y;  // 0x7fffffff + 0x7fffffff = 0xfffffffe = -2
+    long r2 = (long)x + (long)y;  // 0x7fffffff + 0x7fffffff = 0xfffffffe = -2
     System.out.println(r2); // int(4byte) + int(4byte) = int(4byte)
     // 해결 안됨!
     // r2의 출력 결과를 보면 42억이 출력되는 것이 아니라 -2가 출력된다.
