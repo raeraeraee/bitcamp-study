@@ -7,15 +7,14 @@ public class Exam0321 {
     int count = 0;
     int sum = 0;
 
-
     // 1부터 100까지의 짝수의 합은?
     // => continue 사용 전
     count = 0;
     sum = 0;
-    while (count < 100) {
+    while (count < 100) { //// count는 현재까지 더한 숫자의 개수
       count++;
       if ((count & 1) == 0) { // count & 1 ==> count & 0x01 ==> count % 2
-        sum += count;
+        sum += count;//// sum은 짝수의 총합
       }
     }
     System.out.printf("count=%d, sum=%d\n", count, sum);

@@ -1,4 +1,5 @@
-package com.eomcs.lang.ex07;
+
+45package com.eomcs.lang.ex07;
 
 // # 메서드 : 가변 파라미터
 //
@@ -10,8 +11,8 @@ public class Exam0250 {
   // => 메서드 내부에서는 배열처럼 사용한다.
   //
   // 다음은 hello()를 호출할 때 String 값을 0개 이상 전달할 수 있다.
-  static void hello(String... names) {
-    for (int i = 0; i < names.length; i++) {
+  static void hello(String... names) {   ////여기 0 이면
+    for (int i = 0; i < names.length; i++) {////여기도 0
       System.out.printf("%s님 반갑습니다.\n", names[i]);
     }
   }

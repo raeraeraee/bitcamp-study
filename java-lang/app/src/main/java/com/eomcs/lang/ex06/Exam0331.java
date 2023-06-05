@@ -8,25 +8,25 @@ public class Exam0331 {
 
     // 라벨명: 반복문1 { 반복문2 {break 라벨명;}}
     // 라벨 문법:
-    //      라벨: 문장;
-    //      라벨: {문장1, 문장2, ...}
+    // 라벨: 문장;
+    // 라벨: {문장1, 문장2, ...}
 
-    myloop:  
-      while (x <= 9) {
+    myloop: // {
+    while (x <= 9) {
 
-        while (y <= 9) {
-          System.out.printf("%d * %d = %d\n", x, y, x * y);
-          if (x == 5 && y == 5)
-            break myloop; // myloop 라벨에 소속된 문장을 나간다.
-          y++;
-        }
-
-        System.out.println();
-        x++;
-        y = 1;
+      while (y <= 9) {
+        System.out.printf("%d * %d = %d\n", x, y, x * y);
+        if (x == 5 && y == 5)
+          break myloop; // myloop 라벨에 소속된 문장을 나간다.
+        y++;
       }
-    System.out.println("종료!!");
 
+      System.out.println();
+      x++;
+      y = 1;
+    }
+    System.out.println("종료!!");
+    // }
     System.out.println("-----------------------------");
   }
 }

@@ -7,13 +7,13 @@ public class Exam0220 {
   // 예2) 메서드 : 리턴값(X), 파라미터(O)
   // - 메서드 블록을 실행할 때 값이 필요하다면 파라미터 변수를 선언하라!
   // - "여기 돈 줄테니 밥먹고 와!", "여기 등록금이다. 학비 내라."
-  static void hello(String name, int age) {
+  static void hello(String name, int age) {//// 로컬변수 파라미터
     // 파라미터?
     // - 메서드를 실행할 때 사용할 값을 외부로부터 받기 위해 선언한 로컬 변수.
     // - 메서드를 실행할 때 생성되고 메서드 실행이 끝나면 제거된다.
     System.out.printf("%d살 %s님 반갑습니다.\n", age, name);
 
-    //    System.out.println(age + "살 " + name + "님 반갑습니다.");
+    // System.out.println(age + "살 " + name + "님 반갑습니다.");
   }
 
   public static void main(String[] args) {
@@ -50,4 +50,3 @@ public class Exam0220 {
 // name과 age 변수가 파라미터이다.
 //
 // 현장에서는 "아규먼트"와 "파라미터"를 구분하지 않고 사용한다.
-

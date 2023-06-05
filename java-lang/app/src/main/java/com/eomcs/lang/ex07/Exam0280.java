@@ -14,7 +14,7 @@ public class Exam0280 {
     System.out.println(result);
 
     // 2) 메서드의 리턴 값을 바로 파라미터에 전달할 때
-    result = plus(plus(plus(2, 3), 4), 5);
+    result = plus(plus(plus(2, 3), 4), 5);//// 실무에서는 이렇게씀
     // 실행 과정
     // - 메서드를 호출하는 문장의 가장 안쪽부터 실행된다.
     //
@@ -37,5 +37,3 @@ public class Exam0280 {
     return a + b;
   }
 }
-
-

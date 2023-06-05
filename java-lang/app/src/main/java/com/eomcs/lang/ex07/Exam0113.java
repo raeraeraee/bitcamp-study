@@ -28,12 +28,8 @@ public class Exam0113 {
 
     for (int starLen = 1; starLen <= len; starLen += 2) {
       printSpaces((len - starLen) / 2);
-      printStars(starLen);
-      System.out.println();
+      printStars(starLen); // 공백
+      System.out.println(); // 줄바꿈
     }
   }
 }
-
-
-
-

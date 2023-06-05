@@ -4,10 +4,10 @@ package com.eomcs.lang.ex06;
 //
 public class Exam0110 {
   public static void main(String[] args) {
-    int age = 17;
+    int age = 22;
 
     // => if (조건) 문장;
-    if (age >= 19)
+    if (age <= 19)
       System.out.println("성인이다.1");
 
     // => 문장을 다른 줄에 놓는 경우가 많다.
