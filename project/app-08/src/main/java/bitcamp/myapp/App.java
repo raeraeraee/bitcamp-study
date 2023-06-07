@@ -89,7 +89,7 @@ public class App {
 
     static void printMembers() {
         System.out.println("---------------------------------------");
-        System.out.println("번호, 이름, 깃허브, 프로그래머스");
+        System.out.println("번호, 이름, 깃잔디, 프로그래머스");
         System.out.println("---------------------------------------");
 
         for (int i = 0; i < length; i++) {

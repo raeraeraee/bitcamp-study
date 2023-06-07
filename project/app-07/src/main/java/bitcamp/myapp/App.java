@@ -92,7 +92,7 @@ public class App {
 
     static void printMembers(int length, int[] no, String[] name, char[] git_push, char[] programmers) {
         System.out.println("---------------------------------------");
-        System.out.println("번호, 이름, 이메일, 성별");
+        System.out.println("번호, 이름, 깃잔디, 프로그래머스");
         System.out.println("---------------------------------------");
 
         for (int i = 0; i < length; i++) {
