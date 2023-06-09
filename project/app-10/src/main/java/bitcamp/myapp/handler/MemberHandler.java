@@ -121,9 +121,9 @@ public class MemberHandler {
         
         switch (menuNo) {
             case "1":
-                return 'Y';
+                return 'Yes';
             case "2":
-                return 'N';
+                return 'No';
             default:
                 System.out.println("무효한 번호입니다.");
         }
