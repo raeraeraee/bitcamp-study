@@ -21,11 +21,12 @@ public class Score {
     this.aver = this.sum / 3f;
   }
 
-  // getter
+  // getter: private 으로 접근이 막힌 변수의 값을 리턴해주는 메서드
   public int getSum() {
     return this.sum;
   }
 
+  // getter: private 으로 접근이 막힌 변수의 값을 리턴해주는 메서드
   public float getAver() {
     return this.aver;
   }

@@ -1,6 +1,6 @@
 package bitcamp.test.step12;
 
-class Score {
+class Score { // static 붙이면ㄴ안됨
   String name;
   int kor;
   int eng;

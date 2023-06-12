@@ -14,7 +14,7 @@ public class App {
         int math;
         int sum;
         float aver;
-    }
+    } // 중첩 클래스
 
     public static void main(String[] args) {
 

@@ -16,7 +16,7 @@ import bitcamp.test.step15.vo.Score;
 // 12) 클래스를 유지보수 하기 쉽게 별도 소스 파일로 분리
 // 13) 클래스를 유지보수 하기 쉽게 패키지로 분류: import, public
 // 14) 외부접근 차단과 값 꺼내기: private, getter
-// 15) 프로그래밍의 일관성을 위해 보통 다른 필드에 대해서도
+// 15) 프로그래밍의 일관성을 위해 보통 다른 필드에 대해서도 getter를 만들고 사용한다.
 public class App {
 
   public static void main(String[] args) {
@@ -30,6 +30,7 @@ public class App {
     scores[length++] = new Score("유관순", 80, 80, 80);
 
     // 변수에 직접 접근 => 국영수 합계를 임의로 조작 가능!
+    // scores[0].sum = 20000;
 
     for (int i = 0; i < length; i++) {
       printScore(scores[i]);

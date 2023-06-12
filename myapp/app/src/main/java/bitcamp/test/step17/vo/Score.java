@@ -6,7 +6,7 @@ public class Score {
   private String name;
 
   // 직접 접근을 허용했을 때, 무효한 값을 저장할 수 있기 때문에
-  // private으로 접근을 막았다.
+  // private 으로 접근을 막았다.
   private int kor;
   private int eng;
   private int math;
@@ -25,7 +25,6 @@ public class Score {
     this.aver = this.sum / 3f;
   }
 
-  // getter
   public int getSum() {
     return this.sum;
   }
@@ -64,7 +63,6 @@ public class Score {
 
   public int getMath() {
     return this.math;
-
   }
 
   public void setMath(int math) {
@@ -74,4 +72,5 @@ public class Score {
     this.math = math;
     this.compute();
   }
+
 }
