@@ -10,7 +10,7 @@ public class Exam0160 {
     int type; // 0: 손님, 1: 회원, 2: 관리자
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) {//// 멤버의 인스턴스 준비
     Member m1 = new Member();
     m1.id = "aaa";
     m1.password = "1111";
@@ -33,5 +33,3 @@ public class Exam0160 {
     // 주석이나 개발 문서를 자세히 살펴보지 않는 이상에는 숫자의 의미를 파악하기 쉽지 않다.
   }
 }
-
-
