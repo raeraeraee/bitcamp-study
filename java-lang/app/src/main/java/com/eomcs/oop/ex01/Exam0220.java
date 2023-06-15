@@ -17,9 +17,9 @@ public class Exam0220 {
 
     // 배열 문법을 이용하면 한 번에 여러 개의 레퍼런스를 선언할 수 있다.
     // - 문법:
-    //     클래스명[] 배열명 = new 클래스명[레퍼런스개수];
+    // 클래스명[] 배열명 = new 클래스명[레퍼런스개수];
     // - 주의!
-    //   레퍼런스 배열이다. 인스턴스 배열이 아니다!
+    // 레퍼런스 배열이다. 인스턴스 배열이 아니다!
     //
     Score[] arr = new Score[3];
     // 강사님, 인스턴스 배열을 만들 수는 없나요?
@@ -46,18 +46,27 @@ public class Exam0220 {
 
 // 결론!
 // - 여러 개의 인스턴스의 주소를 관리할 때는
-//   레퍼런스 배열을 사용하는 게 편하다.
+// 레퍼런스 배열을 사용하는 게 편하다.
 //
 // 잊지말자!
 // - 인스턴스 배열을 만들 수 없다.
 // - 레퍼런스 배열만 가능하다.
 // - 단 자바 기본 타입(byte, short, int, long, float, double, boolean, char)은
-//   해당 타입의 메모리를 배열로 만들 수 있다.
+// 해당 타입의 메모리를 배열로 만들 수 있다.
 // - 그 외 모든 타입은 오직 레퍼런스 배열만 생성한다.
 
-
-
-
-
-
-
+class Solution {
+  public String solution(String rsp) {
+        String answer = "";
+        
+        for(int i = 0; i < rsp.length(); i++){
+            if(rsp.split("")[i].equals("0")){
+                answer += "5";
+            }
+        }else if(rsp.split("")[i].equals("2")){
+            answer+="0";
+        }
+        else answer += "2";
+        
+    }return answer;
+}

@@ -72,5 +72,6 @@ public class Board {
   public void setPassword(String password) {
     this.password = password;
   }
-}
 
+
+}
