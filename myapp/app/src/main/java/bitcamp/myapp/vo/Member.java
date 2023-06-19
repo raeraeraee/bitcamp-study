@@ -63,7 +63,8 @@ public class Member {
     // return false;
     // }
     //
-    // if (this.getPassword() != null && !this.getPassword().equals(m.getPassword())) {
+    // if (this.getPassword() != null &&
+    // !this.getPassword().equals(m.getPassword())) {
     // return false;
     // }
     //
@@ -113,6 +114,5 @@ public class Member {
   public void setGender(char gender) {
     this.gender = gender;
   }
-
 
 }

@@ -7,11 +7,8 @@ import bitcamp.util.Prompt;
 // 즉 Handler 인터페이스에 선언된 메서드를 모두 정의했다.
 public class MemberHandler implements Handler {
 
-  private static final int MAX_SIZE = 100;
-
+  private MemberList list = new MemberList();
   private Prompt prompt;
-  private Member[] members = new Member[MAX_SIZE];
-  private int length;
   private String title;
 
   public MemberHandler(Prompt prompt, String title) {
@@ -56,17 +53,14 @@ public class MemberHandler implements Handler {
   }
 
   private void inputMember() {
-    if (!this.available()) {
-      System.out.println("더이상 입력할 수 없습니다!");
-      return;
-    }
-
     Member m = new Member();
     m.setName(this.prompt.inputString("이름? "));
     m.setGit_push(inputGit_push((char) 0));
     m.setProgrammers(inputProgrammers((char) 0));
 
-    this.members[this.length++] = m;
+    if (!this.list.add(m)) {
+      System.out.println("입력 실패입니다!");
+    }
   }
 
   private void printMembers() {
@@ -74,8 +68,8 @@ public class MemberHandler implements Handler {
     System.out.println("번호, 이름, 깃 잔디, 프로그래머스");
     System.out.println("---------------------------------------");
 
-    for (int i = 0; i < this.length; i++) {
-      Member m = this.members[i];
+    Member[] arr = this.list.list();
+    for (Member m : arr) {
       System.out.printf("%d, %s, %s, %s\n",
           m.getNo(), m.getName(),
           toGit_pushString(m.getGit_push()),
@@ -84,39 +78,39 @@ public class MemberHandler implements Handler {
   }
 
   private void viewMember() {
-    String memberNo = this.prompt.inputString("번호? ");
-    for (int i = 0; i < this.length; i++) {
-      Member m = this.members[i];
-      if (m.getNo() == Integer.parseInt(memberNo)) {
-        System.out.printf("이름: %s\n", m.getName());
-        System.out.printf("깃 잔디: %s\n", toGit_pushString(m.getGit_push()));
-        System.out.printf("프로그래머스: %s\n", toProgrammerString(m.getProgrammers()));
-        return;
-      }
+    int memberNo = this.prompt.inputInt("번호? ");
+
+    Member m = this.list.get(memberNo);
+    if (m == null) {
+      System.out.println("해당 번호의 회원이 없습니다!");
+      return;
     }
-    System.out.println("해당 번호의 회원이 없습니다!");
+
+    System.out.printf("이름: %s\n", m.getName());
+    System.out.printf("깃 잔디: %s\n", toGit_pushString(m.getGit_push()));
+    System.out.printf("프로그래머스: %s\n", toProgrammerString(m.getProgrammers()));
   }
 
-  public static String toGit_pushString(char git_push) {
+  private static String toGit_pushString(char git_push) {
     return git_push == 'Y' ? "했다" : "안 했다";
   }
 
-  public static String toProgrammerString(char programmers) {
+  private static String toProgrammerString(char programmers) {
     return programmers == 'Y' ? "했다" : "안 했다";
   }
 
   private void updateMember() {
-    String memberNo = this.prompt.inputString("번호? ");
-    for (int i = 0; i < this.length; i++) {
-      Member m = this.members[i];
-      if (m.getNo() == Integer.parseInt(memberNo)) {
-        m.setName(this.prompt.inputString("이름(%s)? ", m.getName()));
-        m.setGit_push(inputGit_push(m.getGit_push()));
-        m.setProgrammers(inputProgrammers(m.getProgrammers()));
-        return;
-      }
+    int memberNo = this.prompt.inputInt("번호? ");
+
+    Member m = this.list.get(memberNo);
+    if (m == null) {
+      System.out.println("해당 번호의 회원이 없습니다!");
+      return;
     }
-    System.out.println("해당 번호의 회원이 없습니다!");
+
+    m.setName(this.prompt.inputString("이름(%s)? ", m.getName()));
+    m.setGit_push(inputGit_push(m.getGit_push()));
+    m.setProgrammers(inputProgrammers(m.getProgrammers()));
   }
 
   private char inputGit_push(char git_push) {
@@ -168,32 +162,8 @@ public class MemberHandler implements Handler {
   }
 
   private void deleteMember() {
-    int memberNo = this.prompt.inputInt("번호? ");
-
-    int deletedIndex = indexOf(memberNo);
-    if (deletedIndex == -1) {
+    if (!this.list.delete(this.prompt.inputInt("번호? "))) {
       System.out.println("해당 번호의 회원이 없습니다!");
-      return;
     }
-
-    for (int i = deletedIndex; i < this.length - 1; i++) {
-      this.members[i] = this.members[i + 1];
-    }
-
-    this.members[--this.length] = null;
-  }
-
-  private int indexOf(int memberNo) {
-    for (int i = 0; i < this.length; i++) {
-      Member m = this.members[i];
-      if (m.getNo() == memberNo) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
-  private boolean available() {
-    return this.length < MAX_SIZE;
   }
 }
