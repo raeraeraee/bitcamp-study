@@ -17,12 +17,12 @@ public class LinkedList implements List {
 
     print(list);
 
-    // System.out.println(list.remove(Integer.valueOf(300)));
-    // System.out.println(list.remove(Integer.valueOf(500)));
-    // System.out.println(list.remove(Integer.valueOf(100)));
-    // System.out.println(list.remove(Integer.valueOf(200)));
-    // System.out.println(list.remove(Integer.valueOf(400)));
-    // System.out.println(list.remove(Integer.valueOf(600)));
+    //    System.out.println(list.remove(Integer.valueOf(300)));
+    //    System.out.println(list.remove(Integer.valueOf(500)));
+    //    System.out.println(list.remove(Integer.valueOf(100)));
+    //    System.out.println(list.remove(Integer.valueOf(200)));
+    //    System.out.println(list.remove(Integer.valueOf(400)));
+    //    System.out.println(list.remove(Integer.valueOf(600)));
 
     System.out.println(list.remove(2));
     System.out.println(list.remove(3));
@@ -36,10 +36,10 @@ public class LinkedList implements List {
     print(list);
 
 
-    // System.out.println(list.retrieve(100));
-    // System.out.println(list.retrieve(300));
-    // System.out.println(list.retrieve(500));
-    // System.out.println(list.retrieve(600));
+    //    System.out.println(list.retrieve(100));
+    //    System.out.println(list.retrieve(300));
+    //    System.out.println(list.retrieve(500));
+    //    System.out.println(list.retrieve(600));
   }
 
   static void print(LinkedList list) {

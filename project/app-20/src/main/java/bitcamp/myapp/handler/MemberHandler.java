@@ -1,19 +1,18 @@
 package bitcamp.myapp.handler;
 
 import bitcamp.myapp.vo.Member;
-import bitcamp.util.List;
+import bitcamp.util.LinkedList;
 import bitcamp.util.Prompt;
 
 public class MemberHandler implements Handler {
 
-  private List list;
+  private LinkedList list = new LinkedList();
   private Prompt prompt;
   private String title;
 
-  public MemberHandler(Prompt prompt, String title, List list) {
+  public MemberHandler(Prompt prompt, String title) {
     this.prompt = prompt;
     this.title = title;
-    this.list = list;
   }
 
   public void execute() {
@@ -60,13 +59,14 @@ public class MemberHandler implements Handler {
 
   private void printMembers() {
     System.out.println("---------------------------------------");
-    System.out.println("번호, 이름, 깃 잔디, 프로그래머스");
+   System.out.println("번호, 이름, 깃 잔디, 프로그래머스");
     System.out.println("---------------------------------------");
 
-    for (int i = 0; i < this.list.size(); i++) {
-      Member m = (Member) this.list.get(i);
+    Object[] arr = this.list.getList();
+    for (Object obj : arr) {
+      Member m = (Member) obj;
       System.out.printf("%d, %s, %s, %s\n",
-          m.getNo(), m.getName(), 
+          m.getNo(), m.getName(),
           toGit_pushString(m.getGit_push()),
           toProgrammerString(m.getProgrammers()));
     }
@@ -75,7 +75,7 @@ public class MemberHandler implements Handler {
   private void viewMember() {
     int memberNo = this.prompt.inputInt("번호? ");
 
-    Member m = this.findBy(memberNo);
+    Member m = (Member) this.list.retrieve(new Member(memberNo));
     if (m == null) {
       System.out.println("해당 번호의 회원이 없습니다!");
       return;
@@ -86,7 +86,7 @@ public class MemberHandler implements Handler {
     System.out.printf("프로그래머스: %s\n", toProgrammerString(m.getProgrammers()));
   }
 
-  private static String toGit_pushString(char git_push) {
+ private static String toGit_pushString(char git_push) {
     return git_push == 'Y' ? "했다" : "안 했다";
   }
 
@@ -97,7 +97,7 @@ public class MemberHandler implements Handler {
   private void updateMember() {
     int memberNo = this.prompt.inputInt("번호? ");
 
-    Member m = this.findBy(memberNo);
+    Member m = (Member) this.list.retrieve(new Member(memberNo));
     if (m == null) {
       System.out.println("해당 번호의 회원이 없습니다!");
       return;
@@ -155,20 +155,10 @@ public class MemberHandler implements Handler {
       }
     }
   }
+
   private void deleteMember() {
     if (!this.list.remove(new Member(this.prompt.inputInt("번호? ")))) {
       System.out.println("해당 번호의 회원이 없습니다!");
     }
   }
-
-  private Member findBy(int no) {
-    for (int i = 0; i < this.list.size(); i++) {
-      Member m = (Member) this.list.get(i);
-      if (m.getNo() == no) {
-        return m;
-      }
-    }
-    return null;
-  }
-
 }
