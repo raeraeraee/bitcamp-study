@@ -6,7 +6,7 @@ import bitcamp.util.List;
 
 public class MemberDetailListener extends AbstractMemberListener {
 
-  public MemberDetailListener(List list) {
+  public MemberDetailListener(List<Member> list) {
     super(list);
   }
 
@@ -21,7 +21,7 @@ public class MemberDetailListener extends AbstractMemberListener {
     }
 
     System.out.printf("이름: %s\n", m.getName());
-    System.out.printf("깃 잔디: %s\n", toGit_pushString(m.getGit_push()));
-    System.out.printf("프로그래머스: %s\n", toProgrammerString(m.getProgrammers()));
+    System.out.printf("이메일: %s\n", m.getEmail());
+    System.out.printf("성별: %s\n", toGenderString(m.getGender()));
   }
 }

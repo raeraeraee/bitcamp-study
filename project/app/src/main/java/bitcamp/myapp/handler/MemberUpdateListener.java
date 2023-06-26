@@ -6,7 +6,7 @@ import bitcamp.util.List;
 
 public class MemberUpdateListener extends AbstractMemberListener {
 
-  public MemberUpdateListener(List list) {
+  public MemberUpdateListener(List<Member> list) {
     super(list);
   }
 
@@ -21,8 +21,9 @@ public class MemberUpdateListener extends AbstractMemberListener {
     }
 
     m.setName(prompt.inputString("이름(%s)? ", m.getName()));
-    m.setGit_push(inputGit_push(m.getGit_push(), prompt));
-    m.setProgrammers(inputProgrammers(m.getProgrammers(), prompt));
+    m.setEmail(prompt.inputString("이메일(%s)? ", m.getEmail()));
+    m.setPassword(prompt.inputString("새암호? "));
+    m.setGender(inputGender(m.getGender(), prompt));
   }
 
 }
