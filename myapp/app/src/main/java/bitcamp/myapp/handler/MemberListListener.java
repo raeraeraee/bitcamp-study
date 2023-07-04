@@ -21,8 +21,7 @@ public class MemberListListener extends AbstractMemberListener {
     Iterator<Member> iterator = list.iterator();
     while (iterator.hasNext()) {
       Member m = iterator.next();
-      System.out.printf("%d, %s, %s, %s\n",
-          m.getNo(), m.getName(), m.getEmail(),
+      System.out.printf("%d, %s, %s, %s\n", m.getNo(), m.getName(), m.getEmail(),
           toGenderString(m.getGender()));
     }
   }
