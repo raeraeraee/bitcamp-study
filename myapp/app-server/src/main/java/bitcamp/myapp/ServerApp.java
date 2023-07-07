@@ -9,6 +9,7 @@ import bitcamp.myapp.dao.BoardListDao;
 import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.dao.MemberListDao;
 import bitcamp.myapp.vo.Board;
+import bitcamp.myapp.vo.Member;
 import bitcamp.net.RequestEntity;
 import bitcamp.net.ResponseEntity;
 
@@ -86,6 +87,59 @@ public class ServerApp {
           value = boardDao.delete(request.getObject(Integer.class));
           response.status(ResponseEntity.SUCCESS).result(value);
           break;
+
+
+
+        case "member/list":
+          response.status(ResponseEntity.SUCCESS).result(memberDao.list());
+          break;
+        case "member/insert":
+          memberDao.insert(request.getObject(Member.class));
+          response.status(ResponseEntity.SUCCESS);
+          break;
+        case "member/findBy":
+          Member member = memberDao.findBy(request.getObject(Integer.class));
+          if (member == null) {
+            response.status(ResponseEntity.FAILURE).result("해당 번호의 게시글이 없습니다!");
+          } else {
+            response.status(ResponseEntity.SUCCESS).result(member);
+          }
+          break;
+        case "member/update":
+          value = memberDao.update(request.getObject(Member.class));
+          response.status(ResponseEntity.SUCCESS).result(value);
+          break;
+        case "member/delete":
+          value = memberDao.delete(request.getObject(Integer.class));
+          response.status(ResponseEntity.SUCCESS).result(value);
+          break;
+
+
+
+        case "reading/list":
+          response.status(ResponseEntity.SUCCESS).result(readingDao.list());
+          break;
+        case "reading/insert":
+          readingDao.insert(request.getObject(Board.class));
+          response.status(ResponseEntity.SUCCESS);
+          break;
+        case "reading/findBy":
+          Board reading = readingDao.findBy(request.getObject(Integer.class));
+          if (reading == null) {
+            response.status(ResponseEntity.FAILURE).result("해당 번호의 게시글이 없습니다!");
+          } else {
+            response.status(ResponseEntity.SUCCESS).result(reading);
+          }
+          break;
+        case "reading/update":
+          value = readingDao.update(request.getObject(Board.class));
+          response.status(ResponseEntity.SUCCESS).result(value);
+          break;
+        case "reading/delete":
+          value = readingDao.delete(request.getObject(Integer.class));
+          response.status(ResponseEntity.SUCCESS).result(value);
+          break;
+
         default:
           response.status(ResponseEntity.ERROR).result("해당 명령을 지원하지 않습니다!");
       }

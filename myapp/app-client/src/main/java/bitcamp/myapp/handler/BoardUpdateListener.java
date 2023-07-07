@@ -34,5 +34,3 @@ public class BoardUpdateListener implements ActionListener {
     boardDao.update(board);
   }
 }
-
-
