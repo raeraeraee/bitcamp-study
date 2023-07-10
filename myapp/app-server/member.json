@@ -33,5 +33,19 @@
     "email": "5",
     "password": "5",
     "gender": "W"
+  },
+  {
+    "no": 6,
+    "name": "1",
+    "email": "1",
+    "password": "1",
+    "gender": "M"
+  },
+  {
+    "no": 7,
+    "name": "abc",
+    "email": "abc",
+    "password": "abc",
+    "gender": "W"
   }
 ]
