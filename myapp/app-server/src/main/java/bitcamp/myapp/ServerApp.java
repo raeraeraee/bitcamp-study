@@ -23,7 +23,7 @@ public class ServerApp {
 
 	HashMap<String,Object> daoMap = new HashMap<>();
 
-	// 자바 스레드풀 준비 23
+	// 자바 스레드풀 준비 234
 	ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
 	public ServerApp(int port) throws Exception {
