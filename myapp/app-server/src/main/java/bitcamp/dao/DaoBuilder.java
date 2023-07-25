@@ -6,7 +6,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Proxy;
 import java.net.Socket;
 import java.util.List;
-import bitcamp.myapp.ClientApp;
+import bitcamp.myapp.ServerApp;
 import bitcamp.net.RequestEntity;
 import bitcamp.net.ResponseEntity;
 
@@ -22,7 +22,7 @@ public class DaoBuilder {
 
   @SuppressWarnings("unchecked")
   public <T> T build(String dataName, Class<T> type) {
-    return (T) Proxy.newProxyInstance(ClientApp.class.getClassLoader(), new Class[] {type},
+    return (T) Proxy.newProxyInstance(ServerApp.class.getClassLoader(), new Class[] {type},
         (proxy, method, args) -> {
           // 요청 정보 준비
           RequestEntity requestEntity = new RequestEntity();
