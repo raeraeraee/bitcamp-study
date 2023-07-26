@@ -27,14 +27,14 @@ public class BoardAddListener implements ActionListener {
 		board.setWriter((Member) prompt.getAttribute("loginUser"));
 
 		try {
-			boardDao.insert(board);
-			Thread.sleep(5000);
-
-			boardDao.insert(board);
-			Thread.sleep(5000);
-
-			boardDao.insert(board);
-			Thread.sleep(5000);
+			//			boardDao.insert(board);
+			//			Thread.sleep(5000);
+			//
+			//			boardDao.insert(board);
+			//			Thread.sleep(5000);
+			//
+			//			boardDao.insert(board);
+			//			Thread.sleep(5000);
 
 			ds.getConnection().commit();
 
