@@ -10,6 +10,8 @@ repositories {
 
 dependencies {
 
+    
+    implementation 'org.mybatis:mybatis:3.5.13'
 // 서브 프로젝트의 클래스를 사용하기
     implementation project(':app-common')
     
