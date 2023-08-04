@@ -1,6 +1,5 @@
 package bitcamp.myapp.handler;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -10,17 +9,20 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
+import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.Board;
 import bitcamp.util.AbstractServlet;
 
 @WebServlet("/board/list")
 public class BoardListServlet extends AbstractServlet {
 
+	BoardDao boardDao;
 	SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
+
+
 	@Override
-	public void service(ServletRequest request, ServletResponse response)
-			throws ServletException, IOException {
+	public void service(ServletRequest request, ServletResponse response) throws ServletException {
 
 		int category = Integer.parseInt(request.getParameter("category"));
 
@@ -42,7 +44,7 @@ public class BoardListServlet extends AbstractServlet {
 		out.println("  <tr><th>번호</th> <th>제목</th> <th>작성자</th> <th>조회수</th> <th>등록일</th></tr>");
 		out.println("</thead>");
 
-		List<Board> list = InitServlet.boardDao.findAll(category);
+		List<Board> list = boardDao.findAll(category);
 
 		out.println("<tbody>");
 		for (Board board : list) {
