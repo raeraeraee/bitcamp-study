@@ -16,14 +16,14 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33'
     
     // Google JSON 라이브러리
-    // implementation 'com.google.code.gson:gson:2.10.1'
+    //implementation 'com.google.code.gson:gson:2.10.1'
   
     // Mybatis 라이브러리
     implementation 'org.mybatis:mybatis:3.5.13'
   
     // Servlet API 
     providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
-      
+        
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
     implementation 'com.google.guava:guava:31.1-jre'
 }
@@ -44,9 +44,6 @@ tasks.withType(JavaCompile) {
     targetCompatibility = '17'
 }
 
-
-
-
 eclipse {
     project {
         name = "myapp-server"
@@ -56,20 +53,18 @@ eclipse {
       targetCompatibility = 17
       javaRuntimeName = "JavaSE-17"
     }
-
     wtp {
         facet {
             facet name: 'jst.java', version: '17'
+            //facet name: 'jst.web', version: '4.0'
         }
         component {
-            //you can configure the context path:
-            //contextPath = '/web'
-
-            //you can configure the deployName:
+            contextPath = '/'
             //deployName = 'web'
         }
     }
 }
+
 war {
     archiveBaseName = "myapp"
 }
