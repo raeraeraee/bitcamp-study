@@ -5,7 +5,7 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
   version="4.0"
   metadata-complete="false">
-  
+
   <!-- 서블릿 객체 등록 -->
   <!--  
   <servlet>
@@ -13,11 +13,11 @@
     <servlet-class>eomcs.servlet.ex01.Servlet01</servlet-class>
   </servlet>
   -->
-    <!-- 서블릿 경로 설정 -->
-    <!--  
-    <servlet-mapping>
+  <!-- 서블릿에 경로 설정 -->
+  <!--  
+  <servlet-mapping>
     <servlet-name>s1</servlet-name>
     <url-pattern>/ex01/first</url-pattern>
-    </servlet-mapping>
-    -->
-  </web-app>
+  </servlet-mapping>
+  -->
+</web-app>
