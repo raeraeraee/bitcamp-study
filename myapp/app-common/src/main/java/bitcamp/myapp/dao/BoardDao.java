@@ -11,4 +11,6 @@ public interface BoardDao {
 	int update(Board board);
 	int updateCount(Board board);
 	int delete(Board board);
+
+	int insertFiles(Board board);
 }
