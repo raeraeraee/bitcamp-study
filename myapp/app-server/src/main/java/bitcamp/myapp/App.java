@@ -27,11 +27,13 @@ public class App {
 		Connector connector = tomcat.getConnector();
 		connector.setURIEncoding("UTF-8");
 
-		// 톰캣 서버에 배포할 웹 애플리케이션의 환경 정보 준비
+		// 톰캣 서버에 배포할 웹 애플리케이션을 등록한다
 		StandardContext ctx = (StandardContext) tomcat.addWebapp(
 				"/", // 컨텍스트 경로(웹 애플리케이션 경로)
 				new File("src/main/webapp").getAbsolutePath() // 웹 애플리케이션 파일이 있는 실제 경로
 				);
+
+		// 자바 클래스 파일이 갱신되었을 때 해당 파일을 자동으로 다시 로딩하게 설정
 		ctx.setReloadable(true);
 
 		// 웹 애플리케이션 기타 정보 설정
@@ -41,7 +43,7 @@ public class App {
 		resources.addPreResources(new DirResourceSet(
 				resources, // 루트 웹 애플리케이션 정보
 				"/WEB-INF/classes", // 서블릿 클래스 파일의 위치 정보
-				new File("bin/main").getAbsolutePath(), // 서블릿 클래스 파일이 있는 실제 경로
+				new File("build/classes/java/main").getAbsolutePath(), // 서블릿 클래스 파일이 있는 실제 경로
 				"/" // 웹 애플리케이션 내부 경로
 				));
 

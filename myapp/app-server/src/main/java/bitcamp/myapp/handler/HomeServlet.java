@@ -16,7 +16,7 @@ public class HomeServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+          throws ServletException, IOException {
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -28,7 +28,7 @@ public class HomeServlet extends HttpServlet {
     out.println("<title>비트캠프</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>MyApp2</h1>");
+    out.println("<h1>MyApp8</h1>");
     out.println("<ul>");
     out.println("  <li><a href='/member/list'>회원</a></li>");
     out.println("  <li><a href='/board/list?category=1'>게시판</a></li>");
