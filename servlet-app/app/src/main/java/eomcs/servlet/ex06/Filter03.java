@@ -1,8 +1,12 @@
 // 컨텍스트 파라미터 가져오기
-package eomcs.servlet.ex06;
+package com.eomcs.web.ex06;
 
-import javax.servlet.*;
 import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 //@WebFilter("/ex05/*")
 public class Filter03 implements Filter {

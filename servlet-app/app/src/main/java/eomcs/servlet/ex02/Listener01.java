@@ -1,4 +1,4 @@
-package com.eomcs.servlet.ex02;
+package com.eomcs.web.ex02;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

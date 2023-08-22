@@ -1,7 +1,12 @@
-package com.eomcs.servlet.ex02;
+package com.eomcs.web.ex02;
 
-import javax.servlet.*;
 import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 // 서블릿 컨테이너가 관리하는 컴포넌트
 // => 서블릿, 필터, 리스너

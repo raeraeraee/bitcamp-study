@@ -1,12 +1,12 @@
 // 필터나 리스너를 테스트하기 위한 서블릿
-package eomcs.servlet.ex02;
+package com.eomcs.web.ex02;
 
+import java.io.IOException;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-import java.io.IOException;
 
 @WebServlet("/ex02/s1")
 public class Servlet01 extends GenericServlet {

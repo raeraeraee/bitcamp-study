@@ -1,11 +1,15 @@
 // 클라이언트로 출력하기 - 바이너리 데이터 출력하기
-package eomcs.servlet.ex03;
+package com.eomcs.web.ex03;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/ex03/s4")
 public class Servlet04 extends GenericServlet {
@@ -28,7 +32,7 @@ public class Servlet04 extends GenericServlet {
     FileInputStream in = new FileInputStream(path);
 
     // 바이너리를 출력할 때 MIME 타입을 지정해야 웹 브라우저가 제대로 출력할 수 있다.
-    // => 웹 브라우저가 모ㅌ르는 형식을 지정하면 웹 브라우저는 처리하지 못하기 때문에
+    // => 웹 브라우저가 모르는 형식을 지정하면 웹 브라우저는 처리하지 못하기 때문에
     //    그냥 다운로드 대화상자를 띄운다.
     res.setContentType("image/jpeg");
 
