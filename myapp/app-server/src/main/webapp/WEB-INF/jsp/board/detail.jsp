@@ -5,7 +5,7 @@
     trimDirectiveWhitespaces="true"
     errorPage="/error.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="refresh" value="2;url=list.jsp?category=${param.category}" scope="request"/>
+<c:set var="refresh" value="2;url=list?category=${param.category}" scope="request"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,7 @@
 </c:if>
 
 <c:if test="${not empty board}">
-    <form action='/board/update' method='post' enctype='multipart/form-data'>
+    <form action='update' method='post' enctype='multipart/form-data'>
     <input type='hidden' name='category' value='${board.category}'>
     <table border='1'>
     <tr><th style='width:120px;'>번호</th>
@@ -37,8 +37,8 @@
     <tr><th>등록일</th> <td>${simpleDateFormatter.format(board.createdDate)}</td></tr>
     <tr><th>첨부파일</th><td>
     <c:forEach items="${board.attachedFiles}" var="file">
-        <a href='https://kr.object.ncloudstorage.com/bitcamp-nc7-bucket-28/board/${file.filePath}'>${file.filePath}</a>
-        [<a href='/board/fileDelete?category=${param.category}&no=${file.no}'>삭제</a>]<br>
+        <a href='https://kr.object.ncloudstorage.com/bitcamp-nc7-bucket-118/board/${file.filePath}'>${file.filePath}</a>
+        [<a href='fileDelete?category=${param.category}&no=${file.no}'>삭제</a>]<br>
     </c:forEach>
         <input type='file' name='files' multiple>
     </td></tr>
@@ -47,8 +47,8 @@
     <div>
     <button>변경</button>
     <button type='reset'>초기화</button>
-    <a href='/board/delete?category=${param.category}&no=${param.no}'>삭제</a>
-    <a href='/board/list?category=${param.category}'>목록</a>
+    <a href='delete?category=${param.category}&no=${param.no}'>삭제</a>
+    <a href='list?category=${param.category}'>목록</a>
     </div>
     </form>
 </c:if>
@@ -57,3 +57,16 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

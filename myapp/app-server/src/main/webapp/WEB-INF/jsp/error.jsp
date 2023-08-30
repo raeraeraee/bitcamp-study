@@ -9,7 +9,6 @@
       response.setHeader("Refresh", (String) request.getAttribute("refresh"));
     }
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,14 +21,26 @@
 
 <h1>실행 오류!</h1>
 
-<c:if test = "${message}">
-   <p>$<message}</p>
-   </c:if>
+<c:if test="${message}">
+  <p>${message}</p>
+</c:if>
 
-   <hr>
-   <p><%=exception%></p>
+<hr>
+<p><%=exception%></p>
+
 
 <jsp:include page="footer.jsp"/>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
