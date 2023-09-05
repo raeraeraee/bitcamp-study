@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 public interface BoardDao {
   int insert(Board board);
   List<Board> findAll(int category);
-  Board findBy(@Param("categoryNo") int category);
+  Board findBy(int no);
   int update(Board board);
   int updateCount(int board);
   int delete(int board);

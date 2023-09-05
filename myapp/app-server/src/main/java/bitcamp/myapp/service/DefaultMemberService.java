@@ -2,13 +2,8 @@ package bitcamp.myapp.service;
 
 import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.vo.Member;
-import bitcamp.util.TransactionCallback;
-import bitcamp.util.TransactionTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,18 +11,16 @@ import java.util.List;
 public class DefaultMemberService implements MemberService {
 
   MemberDao memberDao;
-  TransactionTemplate txTemplate;
 
-  public DefaultMemberService(MemberDao memberDao, PlatformTransactionManager txManager) {
+  public DefaultMemberService(MemberDao memberDao) {
     this.memberDao = memberDao;
-    txTemplate = new TransactionTemplate(txManager);
   }
 
+  @Transactional
   @Override
   public int add(Member member) throws Exception {
-    return txTemplate.execute(status -> memberDao.insert(member));
-    }
-
+    return memberDao.insert(member);
+  }
 
   @Override
   public List<Member> list() throws Exception {
@@ -44,14 +37,15 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findByEmailAndPassword(email, password);
   }
 
+  @Transactional
   @Override
   public int update(Member member) throws Exception {
-    return txTemplate.execute(status -> memberDao.update(member));
-    }
+    return memberDao.update(member);
+  }
 
+  @Transactional
   @Override
   public int delete(int memberNo) throws Exception {
-    return txTemplate.execute(status -> memberDao.delete(memberNo));
-
+    return memberDao.delete(memberNo);
   }
 }

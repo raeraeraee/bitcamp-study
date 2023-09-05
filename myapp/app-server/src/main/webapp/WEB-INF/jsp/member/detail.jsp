@@ -28,7 +28,7 @@
           <img style='height:80px' src='/images/avatar.png'>
         </c:if>
         <c:if test="${not empty member.photo}">
-          <a href='https://kr.object.ncloudstorage.com/bitcamp-nc7-bucket-118/member/${member.photo}'>
+          <a href='https://kr.object.ncloudstorage.com/bitcamp-nc7-bucket-28/member/${member.photo}'>
             <img src='http://mvsenqskbqzl19010704.cdn.ntruss.com/member/${member.photo}?type=f&w=60&h=80&faceopt=true&ttype=jpg'>
           </a>
         </c:if>

@@ -1,32 +1,25 @@
 package bitcamp.myapp.controller;
 
-import bitcamp.myapp.dao.MemberDao;
+import bitcamp.myapp.service.MemberService;
 import bitcamp.myapp.service.NcpObjectStorageService;
 import bitcamp.myapp.vo.Member;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@Component("/member/update")
-public class MemberUpdateController implements PageController {
+@Controller("/member/update")
+public class MemberUpdateController   {
 
-  MemberDao memberDao;
-  SqlSessionFactory sqlSessionFactory;
+  @Autowired
+  MemberService memberService;
+
+  @Autowired
   NcpObjectStorageService ncpObjectStorageService;
 
-  public MemberUpdateController(
-          MemberDao memberDao,
-          SqlSessionFactory sqlSessionFactory,
-          NcpObjectStorageService ncpObjectStorageService) {
-    this.memberDao = memberDao;
-    this.sqlSessionFactory = sqlSessionFactory;
-    this.ncpObjectStorageService = ncpObjectStorageService;
-  }
-
-  @Override
+  @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     try {
       Member member = new Member();
@@ -39,19 +32,17 @@ public class MemberUpdateController implements PageController {
       Part photoPart = request.getPart("photo");
       if (photoPart.getSize() > 0) {
         String uploadFileUrl = ncpObjectStorageService.uploadFile(
-                "bitcamp-nc7-bucket-2s8", "member/", photoPart);
+                "bitcamp-nc7-bucket-28", "member/", photoPart);
         member.setPhoto(uploadFileUrl);
       }
 
-      if (memberDao.update(member) == 0) {
+      if (memberService.update(member) == 0) {
         throw new Exception("회원이 없습니다.");
       } else {
-        sqlSessionFactory.openSession(false).commit();
         return "redirect:list";
       }
 
     } catch (Exception e) {
-      sqlSessionFactory.openSession(false).rollback();
       request.setAttribute("refresh", "2;url=list");
       throw e;
     }
