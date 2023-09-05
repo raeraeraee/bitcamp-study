@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(
         value = "/app/*",
@@ -23,6 +25,8 @@ public class DispatcherServlet extends HttpServlet {
 
   AnnotationConfigApplicationContext iocContainer;
 
+  Map<String, RequestHandlerMapping> handlerMap = new HashMap<>();
+
   @Override
   public void init() throws ServletException {
     System.out.println("DispatcherServlet.init() 호출됨!");
@@ -30,9 +34,25 @@ public class DispatcherServlet extends HttpServlet {
 
     String[] names = iocContainer.getBeanDefinitionNames();
     for (String name : names) {
-      System.out.printf("=> %s\n", iocContainer.getBean(name).getClass().getName());
+      registerRequestHandler(iocContainer.getBean(name));
     }
 
+  }
+
+  private void registerRequestHandler(Object bean) {
+    System.out.printf("=> %s\n", bean.getClass().getName());
+
+    Method[] methods = bean.getClass().getDeclaredMethods();
+    for (Method m : methods) {
+      RequestMapping requestMapping = m.getAnnotation(RequestMapping.class);
+      if (requestMapping == null) {
+        continue;
+      }
+
+      // request handler 메서드를 맵에 등록한다.
+      handlerMap.put(requestMapping.value(), new RequestHandlerMapping(bean, m));
+      System.out.printf("    %s - %s\n", requestMapping.value(), m.getName());
+    }
   }
 
   @Override
@@ -42,18 +62,15 @@ public class DispatcherServlet extends HttpServlet {
 
     response.setContentType("text/html;charset=UTF-8");
 
-    // 클라이언트가 요청한 페이지 컨트롤러를 찾는다.
-    Object pageController =  iocContainer.getBean(pageControllerPath);
-
-    // request handler(요청이 들어 왔을 때 호출될 메서드)를 찾는다.
-    Method requestHandler = getRequestHandler(pageController);
-    if (requestHandler == null) {
-      throw new ServletException("요청을 처리할 핸들러가 없습니다.");
+    // 클라이언트가 요청한 URL의 요청 핸들러 정보를 찾는다.
+    RequestHandlerMapping requestHandlerMapping = handlerMap.get(pageControllerPath);
+    if (requestHandlerMapping == null) {
+      throw new ServletException("요청을 처리할 핸들러가 없습니다!");
     }
 
-    // @RequestMapping 이 붙은 메서드를 호출한다.
+    // request handler 호출하기
     try {
-      String viewUrl =(String) requestHandler.invoke(pageController, request, response);
+      String viewUrl = (String) requestHandlerMapping.handler.invoke(requestHandlerMapping.controller, request, response);
       if (viewUrl.startsWith("redirect:")) {
         response.sendRedirect(viewUrl.substring(9)); // 예) redirect:/app/board/list
       } else {
@@ -67,14 +84,29 @@ public class DispatcherServlet extends HttpServlet {
 
   }
 
-  private Method getRequestHandler(Object pageController) {
-    Class<?> clazz = pageController.getClass();
-    Method[] methods = clazz.getDeclaredMethods();
-    for (Method m : methods) {
-      if (m.getAnnotation(RequestMapping.class) != null) {
-        return m;
-      }
+  static class RequestHandlerMapping {
+    Object controller;
+    Method handler;
+
+    public RequestHandlerMapping() {}
+
+    public RequestHandlerMapping(Object controller, Method handler) {
+      this.controller = controller;
+      this.handler = handler;
     }
-    return  null;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
