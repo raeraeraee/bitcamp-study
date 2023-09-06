@@ -1,11 +1,5 @@
 package bitcamp.myapp.config;
 
-import bitcamp.myapp.dao.BoardDao;
-import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.service.BoardService;
-import bitcamp.myapp.service.DefaultBoardService;
-import bitcamp.myapp.service.DefaultMemberService;
-import bitcamp.myapp.service.MemberService;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -18,18 +12,21 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
 import javax.sql.DataSource;
 
 // Application을 실행하는데 필요한 객체를 설정하는 일을 한다.
 //
 @ComponentScan(basePackages = {
+        "bitcamp.myapp.config",
         "bitcamp.myapp.dao",
         "bitcamp.myapp.controller",
         "bitcamp.myapp.service"})
 @PropertySource({"classpath:bitcamp/myapp/config/ncloud/jdbc.properties"})
 @MapperScan("bitcamp.myapp.dao") // Mybatis가 자동으로 생성할 DAO 객체의 인터페이스 패키지 지정
-@EnableTransactionManagement // @
+@EnableTransactionManagement // @Transactional 애노테이션을 처리할 객체 등록
 public class AppConfig {
 
   public AppConfig() {
@@ -74,5 +71,10 @@ public class AppConfig {
     System.out.println("AppConfig.transactionManager() 호출됨!");
 
     return new DataSourceTransactionManager(dataSource);
+  }
+
+  @Bean
+  public MultipartResolver multipartResolver() {
+    return new StandardServletMultipartResolver();
   }
 }
