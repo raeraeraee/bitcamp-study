@@ -5,16 +5,15 @@ import bitcamp.myapp.service.NcpObjectStorageService;
 import bitcamp.myapp.vo.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.Part;
-import java.util.Map;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@RequestMapping("member")
+@RequestMapping("/member")
 public class MemberController {
 
   {
@@ -28,15 +27,14 @@ public class MemberController {
   NcpObjectStorageService ncpObjectStorageService;
 
   @GetMapping("form")
-  public String add() {
-    return "/WEB-INF/jsp/member/form.jsp";
+  public void form() {
   }
 
   @PostMapping("add")
   public String add(
           Member member,
-          Part photofile,
-          Map<String,Object> model) throws Exception {
+          MultipartFile photofile,
+          Model model) throws Exception {
 
     try {
       System.out.println(member);
@@ -49,8 +47,8 @@ public class MemberController {
       return "redirect:list";
 
     } catch (Exception e) {
-      model.put("message", "회원 등록 오류!");
-      model.put("refresh", "2;url=list");
+      model.addAttribute("message", "회원 등록 오류!");
+      model.addAttribute("refresh", "2;url=list");
       throw e;
     }
   }
@@ -58,7 +56,7 @@ public class MemberController {
   @GetMapping("delete")
   public String delete(
           int no,
-          Map<String,Object> model) throws Exception {
+          Model model) throws Exception {
 
     try {
       if (memberService.delete(no) == 0) {
@@ -67,30 +65,29 @@ public class MemberController {
         return "redirect:list";
       }
     } catch (Exception e) {
-      model.put("refresh", "2;url=list");
+      model.addAttribute("refresh", "2;url=list");
       throw e;
     }
   }
 
-  @RequestMapping("detail")
+  @GetMapping("{no}")
   public String detail(
-          int no,
-          Map<String,Object> model) throws Exception {
-    model.put("member", memberService.get(no));
-    return "/WEB-INF/jsp/member/detail.jsp";
+          @PathVariable int no,
+          Model model) throws Exception {
+    model.addAttribute("member", memberService.get(no));
+    return "member/detail";
   }
 
-  @RequestMapping("list")
-  public String list(Map<String,Object> model) throws Exception {
-    model.put("list", memberService.list());
-    return "/WEB-INF/jsp/member/list.jsp";
+  @GetMapping("list")
+  public void list(Model model) throws Exception {
+    model.addAttribute("list", memberService.list());
   }
 
-  @RequestMapping("update")
+  @PostMapping("update")
   public String update(
           Member member,
-          Part photofile,
-          Map<String,Object> model) throws Exception {
+          MultipartFile photofile,
+          Model model) throws Exception {
     try {
       if (photofile.getSize() > 0) {
         String uploadFileUrl = ncpObjectStorageService.uploadFile(
@@ -105,7 +102,7 @@ public class MemberController {
       }
 
     } catch (Exception e) {
-      model.put("refresh", "2;url=list");
+      model.addAttribute("refresh", "2;url=list");
       throw e;
     }
   }
