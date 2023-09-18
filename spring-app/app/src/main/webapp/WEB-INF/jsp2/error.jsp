@@ -7,9 +7,8 @@
 <title>jsp</title>
 </head>
 <body>
-<h1>/WEB-INF/jsp/c05_3.jsp</h1>
-이름: ${name}<br>
-나이: ${age}<br>
-재직여부: ${working}<br>
+<h1>/WEB-INF/jsp2/error.jsp</h1>
+<p>예외객체: ${error}</p>
+<p>오류메시지: ${error.getMessage()}</p>
 </body>
-</htmㄹㅇl>
+</html>
